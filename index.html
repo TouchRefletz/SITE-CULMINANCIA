@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SITE CULMINÂNCIA</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    html, body {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    #increaseButton {
+      padding: 2em;
+      width: 40em;
+      height: 40em;
+      background-color: #c71e1e;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    #increaseButton:hover {
+      background-color: rgb(255, 50, 50);
+    }
+
+    #botaodestravar {
+      padding: 1em 2em;
+      width: 10em;
+      height: 5em;
+      background-color: #c71e1e;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      border-radius: 50%;
+      margin-top: 2em;
+      display: none;
+    }
+
+    #botaodestravar:hover {
+      background-color: rgb(255, 50, 50);
+    }
+
+    .heart-icon {
+      font-size: 10em;
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+
+    .heart-icon.heart-animation {
+      animation: heartbeat 0.5s ease;
+    }
+
+    .locked {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="container"> 
+    <button onclick="aumentarNumero()" id="increaseButton"><i class="fas fa-heart heart-icon" id="heart-icon"></i></button>
+    <h1><span id="numero">0</span></h1>
+    <button onclick="destravarBotao()" id="botaodestravar">Destravar</button>
+  </div>
+
+  <script>
+    var increaseButton = document.getElementById("increaseButton");
+    var unlockButton = document.getElementById("botaodestravar");
+    var heartIcon = document.getElementById("heart-icon");
+
+    function aumentarNumero() {
+      var numeroSpan = document.getElementById("numero");
+      var numero = parseInt(numeroSpan.innerText);
+      numero++;
+      numeroSpan.innerText = numero;
+
+      heartIcon.classList.add("heart-animation");
+
+      // Remover a classe após a animação do coração
+      setTimeout(function() {
+        heartIcon.classList.remove("heart-animation");
+        increaseButton.classList.add("locked");
+        unlockButton.style.display = "block";
+        unlockButton.disabled = false;
+      }, 500); // Duração da animação em milissegundos (0.5 segundos)
+    }
+
+    function destravarBotao() {
+      increaseButton.classList.remove
+      ("locked");
+unlockButton.style.display = "none";
+unlockButton.disabled = true;
+}
+</script>
+
+</body>
+</html>
